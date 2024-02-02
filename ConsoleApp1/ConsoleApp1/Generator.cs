@@ -115,6 +115,11 @@ namespace ConsoleApp1
         /// <returns>Коллекция файлов</returns>
         public FileInfo[] GenereFiles(DirectoryInfo directory)
         {
+            if (directory is null)
+            {
+                throw new ArgumentNullException(nameof(directory));
+            }
+
             if (!directory.Exists)
             {
                 try

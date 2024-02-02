@@ -22,6 +22,11 @@ namespace ConsoleApp1
         /// <exception cref="ArgumentException">Директория не найдена</exception>
         public FileInfo Combine(DirectoryInfo directory, string deletePattern, out int deletedLines)
         {
+            if (directory is null)
+            {
+                throw new ArgumentNullException(nameof(directory));
+            }
+
             if (!directory.Exists)
             {
                 throw new ArgumentException("Директория не найдена", nameof(directory));
@@ -45,6 +50,11 @@ namespace ConsoleApp1
         /// <returns>Объединенный файл</returns>
         public FileInfo Combine(FileInfo[] sourceFiles, string deletePattern, out int deletedLines)
         {
+            if (sourceFiles is null)
+            {
+                throw new ArgumentNullException(nameof(sourceFiles));
+            }
+
             if (sourceFiles.Length == 0)
             {
                 throw new ArgumentException("Коллекция не содержит файлов", nameof(sourceFiles));
