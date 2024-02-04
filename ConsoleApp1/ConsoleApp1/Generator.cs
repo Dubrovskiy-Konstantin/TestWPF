@@ -139,7 +139,7 @@ namespace ConsoleApp1
                 }
             }
 
-            #warning Поменять на 100 и 100_000
+            #warning Поменять на 100 и 100_000 (будет работать секунд 20)
             int numberOfFiles = 10;
             int numberOfLines = 1000;
             FileInfo[] resultFiles = new FileInfo[numberOfFiles];

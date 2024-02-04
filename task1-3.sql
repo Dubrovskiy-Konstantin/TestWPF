@@ -28,9 +28,3 @@ AS
 BEGIN
 	SELECT AVG(RndFloatNumber) as Average FROM [dbo].[Task1]
 END;
-
---INSERT INTO [dbo].[Task1] ([RndDate],[RndLatSymbols],[RndRusSymbols],[RndEvenNumber],[RndFloatNumber]) VALUES (
---	'2022.07.18', 'AdddaAAddD', N'ÔûûûûûûûÂÂ', '4545456', '1.29992201');
-
---select * from [dbo].[Task1];
---exec FloatNumberAvg
