@@ -84,19 +84,19 @@
                     <Button x:Name="addNewFileTask2Button" Content="Добавить файл" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Padding="5,1,5,1" Grid.Column="1" Margin="7,0,0,0" Click="addNewFileTask2Button_Click"/>
                     <Button x:Name="getFileTask2Button" Content="Показать файл" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Grid.Column="3" Padding="5,1,5,1" Click="getFileTask2Button_Click"/>
                     <ComboBox x:Name="excelFilesComboBox" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Grid.Column="2" Width="450" Margin="46,0,0,0" Grid.ColumnSpan="2" />
-                    <DataGrid x:Name="excelDataGrid" Background="#FFA4A4A4" Grid.Row="1" Grid.ColumnSpan="4" ColumnWidth="7*" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Номер"/>
-                            <DataGridTextColumn Header="Входящее сальдо: Актив"/>
-                            <DataGridTextColumn Header="Входящее сальдо: Пассив"/>
-                            <DataGridTextColumn Header="Обороты: Дебет"/>
-                            <DataGridTextColumn Header="Обороты: Кредит"/>
-                            <DataGridTextColumn Header="Исходящее сальдо: Актив"/>
-                            <DataGridTextColumn Header="Исходящее сальдо: Пассив"/>
-                        </DataGrid.Columns>
+                    <DataGrid x:Name="excelDataGrid" Background="#FFA4A4A4" Grid.Row="1" Grid.ColumnSpan="4" ColumnWidth="7*" FontWeight="Normal" CanUserReorderColumns="False" >
                         <DataGrid.DataContext>
                             <Logic:Bill/>
                         </DataGrid.DataContext>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=col0}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Входящее сальдо: Актив" Binding="{Binding Path=col1}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Входящее сальдо: Пассив" Binding="{Binding Path=col2}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Обороты: Дебет" Binding="{Binding Path=col3}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Обороты: Кредит" Binding="{Binding Path=col4}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Исходящее сальдо:  Актив" Binding="{Binding Path=col5}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Исходящее сальдо: Пассив" Binding="{Binding Path=col6}" CanUserReorder="False"/>
+                        </DataGrid.Columns>
                     </DataGrid>
 
                 </Grid>

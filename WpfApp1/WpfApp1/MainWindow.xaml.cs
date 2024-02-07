@@ -32,10 +32,13 @@ namespace WpfApp1
         private int _numberOfFiles = 0;
         private int _numberOfLines = 0;
 
+        private List<Bill> _Bills { get; set; } = new List<Bill>();
+
         public MainWindow()
         {
             InitializeComponent();
             excelDataGrid.Items.Clear();
+            GetListOfFilesTask2();
         }
 
         private void generateFilesTask1Button_Click(object sender, RoutedEventArgs e)
@@ -129,10 +132,15 @@ namespace WpfApp1
         {
             try
             {
-                string filename = excelFilesComboBox.SelectedItem.ToString();
+                string filename = excelFilesComboBox.SelectedItem?.ToString();
                 excelDataGrid.Items.Clear();
                 ExcelExporter excelImporter = new ExcelExporter(_connectionString);
-                excelDataGrid.ItemsSource = excelImporter.GetBills(filename);
+                _Bills = excelImporter.GetBills(filename);
+                foreach(Bill it in _Bills)
+                {
+                    excelDataGrid.Items.Add(it);
+                }
+
                 MessageBox.Show("Успех");
             }
             catch (Exception ex)

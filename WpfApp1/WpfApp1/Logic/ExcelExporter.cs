@@ -88,7 +88,7 @@ namespace WpfApp1.Logic
                 connection.Open();
                 sqlCommand = connection.CreateCommand();
 
-                string cmd = $"SELECT TOP 1 [Id_Bank], [Id_Period] FROM [dbo].[Sheets] WHERE [Location] LIKE '{filename}';";
+                string cmd = $"SELECT TOP 1 [Id_Bank], [Id_Period] FROM [dbo].[Sheets] WHERE [Location] LIKE N'{filename}';";
                 sqlCommand.CommandText = cmd;
                 reader = sqlCommand.ExecuteReader();
                 reader.Read();
@@ -103,13 +103,13 @@ namespace WpfApp1.Logic
                 {
                     result.Add(new Bill()
                     {
-                        col0 = reader[0].ToString(),
-                        col1 = reader[1].ToString(),
-                        col2 = reader[2].ToString(),
-                        col3 = reader[3].ToString(),
-                        col4 = reader[4].ToString(),
-                        col5 = reader[5].ToString(),
-                        col6 = reader[6].ToString(),
+                        col0 = reader["Bill_Number"].ToString(),
+                        col1 = reader["Opening_Balance_Asset"].ToString(),
+                        col2 = reader["Opening_Balance_Liability"].ToString(),
+                        col3 = reader["Turnover_Debit"].ToString(),
+                        col4 = reader["Turnover_Credit"].ToString(),
+                        col5 = reader["Closing_Balance_Asset"].ToString(),
+                        col6 = reader["Closing_Balance_Liability"].ToString(),
                     });
                 }
                 reader.Close();
