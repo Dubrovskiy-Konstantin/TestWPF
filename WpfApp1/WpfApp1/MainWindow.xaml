@@ -1,0 +1,106 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:SqlClient="clr-namespace:System.Data.SqlClient;assembly=System.Data.SqlClient" xmlns:Logic="clr-namespace:WpfApp1.Logic" x:Class="WpfApp1.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Task 1">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="1" Grid.Row="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="1. Генерировать 100 текстовых файлов со следующей структурой, каждый из которых содержит 100 000 строк" HorizontalAlignment="Left" Grid.ColumnSpan="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="Путь:" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1"/>
+                            <TextBox x:Name="directoryPathTexBox" InputScope="Number" Text="C:\work\testWPF\WpfApp1\Files" Margin="40,5,0,5" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Height="20"/>
+                            <Label Content="Файлов:" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
+                            <TextBox x:Name="numberOfFilesTexBox" InputScope="Number" MaxLength="3" Text="100" Margin="100,5,0,5" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="20" Width="30" Padding="-2,0,0,0"/>
+                            <Label Content="Строк:" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"/>
+                            <TextBox x:Name="numberOfLinesTexBox" InputScope="Number" MaxLength="6" Text="100000" Margin="100,5,0,5" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="55" Padding="-2,0,0,0"/>
+                            <Button x:Name="generateFilesTask1Button" Content="Сгенерировать" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="3" Height="25" Padding="5,1,5,1" Click="generateFilesTask1Button_Click"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="2" Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="2. Объединить сгенерированные файлы в один. " Grid.Row="0"/>
+                            <Label Content="2. При объединении удалить: " Grid.Row="1"/>
+                            <TextBox x:Name="deletePatternTextBox" Text="" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Margin="200,0,0,0" Width="300"/>
+                            <Button x:Name="joinFilesTask1Button" Content="Объединить" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5,1,5,1" Height="25" Click="joinFilesTask1Button_Click"/>
+                            <Label Content=" Удалено строк: " Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Label x:Name="deletedLinesLabel" Content="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="90,0,0,0" FontWeight="Bold"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="3" Grid.Row="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="3. Импортировать данные из объединённого файла в БД. " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Button x:Name="importFileToDBTask1Button" Content="Импортировать" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Padding="5,1,5,1" Click="importFileToDBTask1Button_Click"/>
+                            <Label Content="Ход процесса:" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2"/>
+                            <Label x:Name="importProgressLabel" Content="-" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Margin="90,0,0,0" FontWeight="Normal" FontStyle="Italic"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Task 2" FontWeight="Normal">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="134*"/>
+                        <ColumnDefinition Width="476*"/>
+                        <ColumnDefinition Width="159*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="addNewFileTask2Button" Content="Добавить файл" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Padding="5,1,5,1" Grid.Column="1" Margin="7,0,0,0" Click="addNewFileTask2Button_Click"/>
+                    <Button x:Name="getFileTask2Button" Content="Показать файл" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Grid.Column="3" Padding="5,1,5,1" Click="getFileTask2Button_Click"/>
+                    <ComboBox x:Name="excelFilesComboBox" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Grid.Column="2" Width="450" Margin="46,0,0,0" Grid.ColumnSpan="2" />
+                    <DataGrid x:Name="excelDataGrid" Background="#FFA4A4A4" Grid.Row="1" Grid.ColumnSpan="4" ColumnWidth="7*" FontWeight="Normal" CanUserReorderColumns="False" >
+                        <DataGrid.DataContext>
+                            <Logic:Bill/>
+                        </DataGrid.DataContext>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Path=col0}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Входящее сальдо: Актив" Binding="{Binding Path=col1}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Входящее сальдо: Пассив" Binding="{Binding Path=col2}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Обороты: Дебет" Binding="{Binding Path=col3}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Обороты: Кредит" Binding="{Binding Path=col4}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Исходящее сальдо:  Актив" Binding="{Binding Path=col5}" CanUserReorder="False"/>
+                            <DataGridTextColumn Header="Исходящее сальдо: Пассив" Binding="{Binding Path=col6}" CanUserReorder="False"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
